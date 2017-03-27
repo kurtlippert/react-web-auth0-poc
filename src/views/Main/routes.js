@@ -3,8 +3,8 @@ import {Route, IndexRedirect} from 'react-router'
 import AuthService from 'utils/AuthService'
 import Container from './Container'
 import Home from './Home/Home'
-import Login from './Login/Login'
 import Details from './Home/Details'
+import Login from './Login/Login'
 
 const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__);
 
@@ -25,9 +25,10 @@ export const makeMainRoutes = () => {
   return (
     <Route path="/" component={Container} auth={auth}>
       <IndexRedirect to="/home" />
-      <Route path="home" component={Home} onEnter={requireAuth} />
+      <Route path="home" component={Home} onEnter={requireAuth}>
+        <Route path="details/:productId" component={Details} onEnter={requireAuth} />
+      </Route>
       <Route path="login" component={Login} onEnter={parseAuthHash} />
-      <Route path="details/:id" component={Details} />
     </Route>
   )
 }

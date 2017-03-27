@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
+import { Route, Link } from 'react-router'
 import { Table, Button } from 'react-bootstrap'
+import Details from './Details'
 
 // User data fetched via api
 const content = (userId) =>
@@ -21,12 +23,14 @@ const content = (userId) =>
         }
     ]
     .map(item => 
-        <tr>
+        <tr key={item.id}>
             <td>{item.id}</td>
             <td>{item.name}</td>
             <td>{item.price}</td>
             <td>
-                <Button>Details</Button>
+                <Button>
+                    <Link to={`home/details/${item.id}`}>Details</Link>
+                </Button>
             </td>
         </tr>)
 
