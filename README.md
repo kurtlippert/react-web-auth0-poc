@@ -1,3 +1,8 @@
+# Update 3/27/2017  
+  
+With the latest commit, I've added an example table view with details button.  
+The data has no meaning yet.
+
 # Custom Login
 
 [Full Tutorial](https://auth0.com/docs/quickstart/spa/react/02-custom-login)
