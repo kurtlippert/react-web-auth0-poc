@@ -9,16 +9,25 @@ export class Container extends React.Component {
     router: T.object
   }
 
-//  constructor() {
-//    this.handleDetails = this.handleDetails.bind(this)
-//  }
-//
-//  handleDetails(e) {
-//    e.preventDefault()
-//    this.setState({
-//      showDetails: false
-//    })
-//  }
+  constructor(props, context) {
+    super()
+    this.state = {
+      potatoes: []
+    }
+    fetch('https://bvpoc1.herokuapp.com/api/v1/item/', 
+      {
+          method: 'GET',
+          headers: { authorization: 'bearer ' + props.route.auth.getToken() }
+      }).then(response => {
+          response.json().then(json => {
+            console.log(json)
+            this.setState({
+              potatoes: json
+            })
+          })
+      })
+
+  }
 
   render() {
     let children = null;
@@ -38,10 +47,10 @@ export class Container extends React.Component {
         </Jumbotron>
           <div className="container">
             { this.props.location.pathname === "/home" &&
-              <List userId={this.props.route.auth.getProfile().user_id.split('|')[1]} />
+              <List userId={this.props.route.auth.getToken()} />
             }
             { this.props.location.pathname.replace(/^\//, '').startsWith("home/details/") &&
-              <Details productId={this.props.location.pathname.split('/')[2]} />
+              <Details productId={`${this.props.location.pathname.match(/\/home\/details\/\d/)}`.substr(-1)} />
             }
           </div>
       </div>
