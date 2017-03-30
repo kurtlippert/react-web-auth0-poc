@@ -11,22 +11,24 @@ export class Container extends React.Component {
 
   constructor(props, context) {
     super()
+
     this.state = {
       potatoes: []
     }
+  }
+
+  componentDidMount() {
     fetch('https://bvpoc1.herokuapp.com/api/v1/item/', 
       {
           method: 'GET',
-          headers: { authorization: 'bearer ' + props.route.auth.getToken() }
+          headers: { authorization: 'bearer ' + this.props.route.auth.getToken() }
       }).then(response => {
           response.json().then(json => {
-            console.log(json)
             this.setState({
               potatoes: json
             })
           })
       })
-
   }
 
   render() {
@@ -37,6 +39,7 @@ export class Container extends React.Component {
       })
     }
 
+    const currentPath = this.props.location.pathname
     return (
       <div>
         <Jumbotron>
@@ -46,11 +49,11 @@ export class Container extends React.Component {
           { children }
         </Jumbotron>
           <div className="container">
-            { this.props.location.pathname === "/home" &&
-              <List userId={this.props.route.auth.getToken()} />
+            { currentPath === "/home" &&
+              <List potatoes={this.state.potatoes} />
             }
-            { this.props.location.pathname.replace(/^\//, '').startsWith("home/details/") &&
-              <Details productId={`${this.props.location.pathname.match(/\/home\/details\/\d/)}`.substr(-1)} />
+            { currentPath.includes("home/details/") &&
+              <Details potatoes={this.state.potatoes.filter(p => p.id == `${currentPath.match(/\/home\/details\/\d/)}`.substr(-1))}  />
             }
           </div>
       </div>
