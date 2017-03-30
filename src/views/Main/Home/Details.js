@@ -1,16 +1,18 @@
-//import React from 'react'
-//import Home from './Home'
-//
-//const Details = () =>
-//    <Home />
-//
-//export default Home
-
 import React, { PropTypes } from 'react'
+import { ListGroup, ListGroupItem } from 'react-bootstrap'
 
-const Details = ({ productId }) =>
+const Details = ({ potatoes }) =>
     <div>
-        Details for product: { productId }
+        { potatoes.map(potato => 
+            <div key={ potato.id }>
+                <h2>{ potato.name }</h2>
+                <ListGroup>
+                    <ListGroupItem>{ potato.description }</ListGroupItem>
+                    <ListGroupItem>Was created: { potato.created_at }</ListGroupItem>
+                    <ListGroupItem>Was last modified: { potato.modified_at }</ListGroupItem>
+                </ListGroup>
+            </div>
+        )}
     </div>
 
-export default Details
+export default Details;
