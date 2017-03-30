@@ -1,40 +1,8 @@
 import React, { PropTypes } from 'react'
-import { Route, Link } from 'react-router'
+import { Link } from 'react-router'
 import { Table, Button } from 'react-bootstrap'
-import Details from './Details'
 
-// User data fetched via api
-const content = (userId) =>
-    [
-        {
-            id: '1',
-            name: 'Warcraft',
-            price: 50
-        },
-        {
-            id: '2',
-            name: 'Minecraft',
-            price: 20
-        },
-        {
-            id: '3',
-            name: 'TwoWorlds',
-            price: 5
-        }
-    ]
-    .map(item => 
-        <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.name}</td>
-            <td>{item.price}</td>
-            <td>
-                <Button>
-                    <Link to={`home/details/${item.id}`}>Details</Link>
-                </Button>
-            </td>
-        </tr>)
-
-const List = ({ userId }) =>
+const List = ({ potatoes }) =>
     <Table condensed>
         <thead>
             <tr>
@@ -45,12 +13,23 @@ const List = ({ userId }) =>
             </tr>
         </thead>
         <tbody>
-            { content(userId) }
+            { potatoes.map(potato =>
+                <tr key={potato.id}>
+                    <td>{potato.id}</td>
+                    <td>{potato.name}</td>
+                    <td>{potato.price}</td>
+                    <td>
+                        <Button>
+                            <Link to={`home/details/${potato.id}`}>Details</Link>
+                        </Button>
+                    </td>
+                </tr>
+            )}
         </tbody>
     </Table>
 
 List.propTypes = {
-    userId: PropTypes.string.isRequired 
+    potatoes: PropTypes.array.isRequired 
 }
 
 export default List;
