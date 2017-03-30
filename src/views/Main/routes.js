@@ -7,16 +7,6 @@ import Details from './Home/Details'
 import Login from './Login/Login'
 
 const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__);
-var idToken = localStorage.getItem('userToken');
-const authHash = auth.parseHash(window.location.hash);
-
-if (authHash) {
-  if (authHash.id_token) {
-    idToken = authHash.id_token;
-    localStorage.setItem('userToken', authHash.id_token);
-    location.href = '/#/';
-  }
-}
 
 // onEnter callback to validate authentication in private routes
 const requireAuth = (nextState, replace) => {
