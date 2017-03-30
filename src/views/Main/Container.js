@@ -53,7 +53,7 @@ export class Container extends React.Component {
               <List potatoes={this.state.potatoes} />
             }
             { currentPath.includes("home/details/") &&
-              <Details potatoes={this.state.potatoes.filter(p => p.id == `${currentPath.match(/\/home\/details\/\d/)}`.substr(-1))}  />
+              <Details potatoes={this.state.potatoes.filter(p => p.id == `${currentPath.match(/home\/details\/\d/)}`.substr(-1))}  />
             }
           </div>
       </div>
