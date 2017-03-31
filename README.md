@@ -3,6 +3,13 @@
 With the latest commit, I've added an example table view with details button.  
 The data has no meaning yet.
 
+# Run with Docker
+
+Build with:
+  docker build -t "poc:react" .
+Run with:
+  docker run -d -p 3000:3000 poc:react npm start
+
 # Custom Login
 
 [Full Tutorial](https://auth0.com/docs/quickstart/spa/react/02-custom-login)
