@@ -18,7 +18,7 @@ export class Container extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://bvpoc1.herokuapp.com/api/v1/item/', 
+    fetch(__API_ENDPOINT__, 
       {
           method: 'GET',
           headers: { authorization: 'bearer ' + this.props.route.auth.getToken() }
