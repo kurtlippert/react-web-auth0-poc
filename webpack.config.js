@@ -40,6 +40,8 @@ window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){va
   }
 });
 
+config.devServer.hostname = '0.0.0.0'
+
 // ENV variables
 const dotEnvVars = dotenv.config();
 const environmentEnv = dotenv.config({
