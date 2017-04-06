@@ -3,3 +3,4 @@ WORKDIR /usr/src/react
 COPY . /usr/src/react/
 RUN npm install
 EXPOSE 3000
+CMD npm start
