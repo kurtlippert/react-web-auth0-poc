@@ -21,6 +21,9 @@ var config = getConfig({
   isDev: isDev,
   in: join(src, 'app.js'),
   out: dest,
+  devServer: {
+    hostname: '0.0.0.0',
+  },
 
   html: function (context) {
     return {
@@ -39,8 +42,6 @@ window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){va
     }
   }
 });
-
-config.devServer.hostname = '0.0.0.0'
 
 // ENV variables
 const dotEnvVars = dotenv.config();
