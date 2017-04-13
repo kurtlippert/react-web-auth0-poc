@@ -3,5 +3,6 @@ image: node:7.8.0
 pipelines:
   default:
     - step:
+        script:
           - npm install
           - npm test
