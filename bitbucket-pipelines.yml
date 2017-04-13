@@ -1,0 +1,7 @@
+image: node:7.8.0
+
+pipelines:
+  default:
+    - step:
+          - npm install
+          - npm test
